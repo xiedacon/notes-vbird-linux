@@ -1,2 +1,0 @@
-# notes
-some study notes
