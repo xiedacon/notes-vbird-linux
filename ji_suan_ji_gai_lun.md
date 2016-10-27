@@ -49,9 +49,9 @@ CPU可以分为精简指令集（RISC）和复杂指令集（CISC）。
 
 MHz，GHz
 
-###主板架构
+###内存
 
-#####Intel
+动态随机存取内存（DRAM）：分为SDRAM和DDR SDRAM两种
 
 
 
