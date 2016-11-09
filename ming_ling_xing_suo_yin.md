@@ -192,7 +192,31 @@ top [-bnp]
 ```
 
 * kill
+
+```
+kill -signal PID
+
+signal（讯号）
+  1 SIGHUP 启动被终止的程序，类似重新启动
+  2 SIGINT 相当于ctrl+c，中断程序的进行
+  9 SIGKILL 强制中断程序的进行
+  15 SIGTERM 以正常结束程序来终止该程序
+  17 SIGTOP 相当于ctrl+z，暂停一个程序的进行
+  更多信息自行man 7 signal
+```
+
 * killall
+
+
+killall [-iIe] [command name]
+```
+killall -signal 指令名称
+
+-i：交互模式
+-e：exact的意思，表示后面接的command name要一致，但整个完整的指令不能超过15个字符（并不能看懂是什么意思）
+-I：指令名称（可能含参数）忽略大小写
+```
+
 * bg
 * fg
 * jobs
