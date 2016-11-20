@@ -110,3 +110,7 @@ http://www.pathname.com/fhs/
 |/bin|/bin下放置的是在单人维护模式下还能被操作的命令。/bin下的命令可以被root和一般账号所使用，主要有：cat、chmod、chown、date、mv、mkdir、cp、bash等常用指令|
 |/boot|这个目录主要防止开机会使用到的档案，包括Linux核心档案以及开机选单与开机所需配置文件等|
 |/dev|在Linux系统上，任何装置与接口设备都是以档案的形态存在于这个目录中|
+|/etc|系统主要的配置文件几乎都放置在这个目录内，例如人员的账号密码文件、各种服务的起始档等等。一般来说，这个目录下的各文件属性是可以让一般使用者查阅的，但是只有root有权利修改。比较重要的档案有：/etc/inittab、/etc/init.d/、/etc/modprobe.conf、/etc/X11/、/etc/fstab、/etc/sysconfig/等等。|
+|/etc/init.d/|所有服务的预设启动脚本都是放在这个目录下|
+|/etc/xinetd.d/|这就是所谓的super daemon管理的各项服务的配置文件目录|
+|/etc/X11/|与X Window有关的各种配置文件都在这里，尤其是xorg.conf这个X Server的配置文件|
