@@ -232,6 +232,51 @@ hdparm [-icdmXTt] 装置名称
 -t：测试硬盘的实际存取性能
 ```
 
+###设定开机挂载
+
+####开机挂载/etc/fstab及/etc/mtab
+
+系统挂载的限制
+
+* 根目录/是必须挂载的，而且一定要先于其它mount point被挂载进来
+* 其它mount point必须为已建立的目录。可以任意指定，但一定要遵守必须的系统目录架构原则
+* 所有mount point再同一时间之内，只能挂载一次
+* 所有partition在同一时间之内，只能挂载一次
+* 若进行卸除，必须先将工作目录移到mount point及其子目录之外
+
+###文件系统的特殊观察与操作
+
+####boot sector与superblock的关系
+
+* superblock大小为1024bytes
+* superblock前面需要保留1024bytes下来，以让开机管理程序可以安装
+* block为1024bytes时，boot sector与superblock在不同的block内
+* block大于1024bytes时，boot sector与superblock在同一block内
+
+####利用GNU的parted进行分割行为
+
+```
+parted [装置] [指令 [参数]]
+
+新增分割：mkpart [分割槽类型] [文件系统] 开始 结束
+分割表：print
+删除分割：rm [partition]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
