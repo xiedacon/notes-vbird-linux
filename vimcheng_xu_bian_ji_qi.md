@@ -8,6 +8,8 @@
 |编辑模式|在一般模式中可以进行删除、复制、黏贴等等的操作，但是无法编辑文件内容。需要按下i,I,o,O,a,A,r,R等任何一个字母之后才会进入编辑，而如果要回到一般模式必须按下Esc|
 |指令行模式|在一般模式中，按下:/?三个中的任何一个，就会进入指令行模式，可以进行搜寻、读取、储存、取代字符、离开、显示行号等等的动作|
 
+![](vi三种模式的相互关系.png)
+
 ####按键说明
 
 第一部分：一般模式可用的按钮说明，光标移动、复制、黏贴、搜寻、取代等
@@ -116,10 +118,50 @@
 |ctrl+w+k/↑|光标移动到上方窗口|
 |ctrl+w+q|关闭当前窗口|
 
+####vim环境设定与记录
 
+* ~/.vimrc：记录vi的设定
+* ~/.viminfo：记录vi内的动作
 
+vi的环境设定参数，可用:set all来查询
 
+|按键|动作|
+|--|--|
+|:set nu/nonu|设定或取消行号|
+|:set hlsearch/nohlsearch|设定是否将搜寻的字符串反白|
+|:set autoindent/noautoindent|设定时候自动缩排|
+|:set backup|设定自动备份，默认是nobackup|
+|:set ruler|设定是否显示状态栏|
+|:set showmode|设定是否显示左下角的状态栏|
+|:set backspace=|当backspace设为2时，可以删除任意值，当backspace设为0/1时，仅可删除输入的字符|
+|:set add|显示所有的环境参数设定值|
+|:set|显示与系统默认值不同的设定参数|
+|:syntax on/off|设定是否开启语法显色|
+|:set bg=light/dark|设定背景颜色|
 
+###其它注意事项
+
+####DOS与Linux的断行字符
+
+```
+dos2unix [-kn] file [newfile]
+unix2dos [-kn] file [newfile]
+
+-k：保留该档案原本的mtime时间格式
+-n：保留原本的旧档，将转换后的内容输出到新档案
+```
+
+####语系编码转换
+
+```
+iconv --list
+iconv -f 原本编码 -t 新编码 filename [o newfile]
+
+--list：列出iconv支持的语系数据
+-f：from，后接原本的编码格式
+-t：to，后接新编码格式
+-o file：后接新档名，保留原档
+```
 
 
 
