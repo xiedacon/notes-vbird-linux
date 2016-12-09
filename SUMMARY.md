@@ -9,4 +9,5 @@
 * [Linux磁盘与文件系统管理](linuxci_pan_yu_wen_jian_xi_tong_guan_li.md)
 * [档案与文件系统的压缩与打包](dang_an_yu_wen_jian_xi_tong_de_ya_suo_yu_da_bao.md)
 * [vim程序编辑器](vimcheng_xu_bian_ji_qi.md)
+* [认识与学习BASH](认识与学习bash.md)
 
