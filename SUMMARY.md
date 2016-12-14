@@ -12,4 +12,5 @@
 * [认识与学习BASH](认识与学习bash.md)
 * [正则表达式与文本格式化处理](正则表达式与文本格式化处理.md)
 * [Shell Scripts](shell-script.md)
+* [Linux账号管理与ACL权限设定](linux账号管理与acl权限设定.md)
 
