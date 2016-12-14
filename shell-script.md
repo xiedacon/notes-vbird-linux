@@ -93,17 +93,95 @@ shift n
 代表拿掉最前面的n个参数，n默认为1
 ```
 
+###条件判断式
 
+####if...then
 
+```
+单层简单条件判断式
+if [条件判断式]; then
+        当条件判断式成立时，执行
+fi
 
+多重复杂条件判断式
+if [条件判断式]; then
+        当条件判断式成立时，执行
+else
+        当条件判断式不成立时，执行
+fi
 
+if [条件判断式1]; then
+        当条件判断式1成立时，执行
+elif [条件判断式2]; then
+        当条件判断式2成立时，执行
+else
+        当条件判断式1、2都不成立时，执行
+fi
+```
 
+####case...esac
 
+```
+case $变量名称 in
+ "第一个变量内容")
+    程序段
+    ;;
+ "第二个变量内容")
+    程序段
+    ;;
+ *)               //最后一个变量内容会用*来代表所有值
+    程序段
+    ;;
+esac
+```
 
+####function
 
+```
+function fname() {
+    程序段
+}
+```
 
+###循环
 
+####while do done,until do done
 
+```
+while [condition]
+do
+    程序段
+done
+
+until [condition]
+do
+    程序段
+done
+```
+
+####for...do...done
+
+```
+for var in con1 con2 ...
+do
+    程序段
+done
+
+for ((初始值;限制值;执行步阶))
+do
+    程序段
+done
+```
+
+###shell script的追踪于debug
+
+```
+sh [-nvx] script.sh
+
+-n：不执行script，仅检查语法
+-v：执行script之前，先把script的内容输出到屏幕上
+-x：将使用到的script内容显示到屏幕上
+```
 
 
 
