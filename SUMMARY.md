@@ -13,4 +13,5 @@
 * [正则表达式与文本格式化处理](正则表达式与文本格式化处理.md)
 * [Shell Scripts](shell-script.md)
 * [Linux账号管理与ACL权限设定](linux账号管理与acl权限设定.md)
+* [磁盘配额\(Quota\)与进阶文件系统管理](磁盘配额quota与进阶文件系统管理.md)
 
