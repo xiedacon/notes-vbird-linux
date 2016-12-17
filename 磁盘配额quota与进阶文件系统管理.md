@@ -140,3 +140,101 @@ setquota [-u|-g] 名称 block(soft) block(hard) inode(soft) inode(hard) 文件�
 * RAID 5：性能与数据备份的均衡考虑
 
 ![](/assets/RAID-5的·磁盘写入示意图.png)
+
+####软件磁盘阵列
+
+```
+mdadm --detail /dev/md0
+mdadm --create --auto=yes /dev/md[0-9] --raid-devices=N --level=[015] --spare-devices=N /dev/sdx /dev/hdx..
+
+--create：建立RAID选项
+--auto=yes：后接建立软件磁盘阵列的装置
+--raid-devices=N：使用多个磁盘作为磁盘阵列装置
+--spare-devices=N：使用多个磁盘作为备用装置
+--level=[015]：设定这组磁盘阵列的等级
+--detail：后接磁盘阵列的详细信息
+```
+
+####仿真RAID错误的救援模式
+
+```
+mdadm --manage /dev/md[0-9] [--add 装置] [--remove 装置] [--fail 装置]
+
+--add：将后接装置加入md
+--remove：将后接装置移出md
+--fail：将后接装置设定为fail状态
+```
+
+####开机自动启动RAID并自动挂载
+
+/etc/mdadm.conf
+
+####关闭软件RAID
+
+```
+1. 先卸除再删除配置文件
+umount /dev/md0
+/etc/fstab
+
+2. 直接关闭/dev/md0
+mdadm --stop /dev/md0
+```
+
+###逻辑滚动条管理员（Logical Volume Manager）
+
+####LVM：PV,PE,VG,LV
+
+* Physical Volume,PV,实体滚动条
+* Volume Group,VG,滚动条群组
+* Physical Extend,PE,实体延伸区块
+* Logical Volume,LV,逻辑滚动条
+
+![](/assets/LVM各组件的实现流程图示.png)
+
+* 线性模式（linear）：当一个硬盘使用完后才会使用下一个
+* 交错模式（triped）：将一笔数据分成多份写入不同的硬盘
+
+####LVM使用流程
+
+* PV阶段
+
+```
+pvcreate：将实体硬盘建立成为PV
+pvcreate /dev/hda{6,7,8}
+
+pvscan：查询系统内的PV
+pvdisplay：显示处目前系统上的PV状态
+pvremove：将PV属性移除
+```
+
+* VG阶段
+
+```
+vgcreate：建立VG
+vgcreate [-s N[mgt]] VG名称 PV名称
+
+-s：后接PE大小，单位可以是m，g，t
+
+vgscan：查询系统内的VG
+vgdisplay：显示系统上的VG状态
+vgextend：在VG内增加PV
+vgreduce：在VG内移除PV
+vgchange：设定VG是否启动
+vgremove：删除VG
+```
+
+* LV阶段
+
+```
+lvcreate：建立LV
+lvcreate [-s N[mgt]] VG名称 PV名称
+
+
+lvscan：查询系统内的LV
+lvdisplay：显示系统上的LV状态
+lvextend：在LV内增加容量
+lvreduce：在LV内减少容量
+lvremove：删除LV
+lvresize：调整LV
+```
+
