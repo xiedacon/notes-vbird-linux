@@ -227,7 +227,11 @@ vgremove：删除VG
 
 ```
 lvcreate：建立LV
-lvcreate [-s N[mgt]] VG名称 PV名称
+lvcreate [-L N[mgt]] [-n LV名称] VG名称
+lvcreate [-l N] [-n LV名称] VG名称
+-L：后接容量
+-l：后接PE个数
+-n：后接LV名称
 
 
 lvscan：查询系统内的LV
@@ -238,3 +242,19 @@ lvremove：删除LV
 lvresize：调整LV
 ```
 
+* 文件系统阶段
+
+####增加LV容量
+
+####缩小LV容量
+
+####LVM相关指令汇总及LVM关闭
+
+![](/assets/LVM指令汇总.png)
+
+1. 先卸除系统上面的LVM文件系统
+2. 使用lvremove移除LV
+3. 使用vgchange -a n VGname 让这个VG不具有active标志
+4. 使用vgremove移除VG
+5. 使用pvremove移除PV
+6. 修改ID
