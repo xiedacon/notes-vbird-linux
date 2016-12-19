@@ -27,3 +27,6 @@
 ###[Linux账号管理与ACL权限设定](https://github.com/xiedacon/notes-vbird-linux/blob/master/linux%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86%E4%B8%8Eacl%E6%9D%83%E9%99%90%E8%AE%BE%E5%AE%9A.md)
 
 ###[磁盘配额(Quota)与进阶文件系统管理](https://github.com/xiedacon/notes-vbird-linux/blob/master/%E7%A3%81%E7%9B%98%E9%85%8D%E9%A2%9Dquota%E4%B8%8E%E8%BF%9B%E9%98%B6%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86.md)
+
+###[例行性工作排程（crontab）](https://github.com/xiedacon/notes-vbird-linux/blob/master/例行性工作排程（crontab）.md)
+
