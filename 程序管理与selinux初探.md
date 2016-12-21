@@ -295,5 +295,109 @@ pidof [-sx] program_name
 
 ###SELinux初探
 
+####SELinux的运作模式
+
+* 主体（Subject）
+
+* 目标（Object）
+
+* 政策（Policy）
+
+* 安全性本文
+
+![](/assets/SELinux运作的各组件的相关性.png)
+
+####SELinux的启动、关闭与观察
+
+* enforcing：强制模式，代表SELinux运作中，且已经正确的开始限制domain/type
+* permissive：宽容模式，代表SELinux运作中，不过仅会有警告信息并不会实际限制domian/type的存取
+* disabled：关闭
+
+```
+getenforce     //显示目前的SELinux模式
+
+sestatus [-vb]
+
+-v：检查位于/etc/sestatus.conf内的档案与程序的安全性文本内容
+-b：将目前政策的规则布尔值列出
+
+setenforce [0|1]
+
+0：转成permissive模式
+1：转成enforcing模式
+```
+
+####SELinux网络服务运作
+
+* 网络服务的启动与观察
+
+* 错误的SELinux安全性本文
+
+* 重设SELinux安全性本文
+
+```
+chron [-R] [-t type] [-u user] [-r role] 档案
+chcon [-R] --reference=范例文件 档案
+
+-R：连同该目录下的次目录也同时修改
+-t：后接安全性本文的类型字段
+-u：后接身份识别
+-r：后接角色
+
+restorecon [-Rv] 档案或目录
+
+-R：连同次目录一起修改
+-v：将过程显示到屏幕上
+```
+
+####SELinux所需的服务
+
+####SElinux的政策与规则管理
+
+* 政策查询
+
+```
+seinfo [-Atrub]
+
+-A：列出SELinux的状态、规则布尔值、身份识别、角色、类别等所有信息
+-t：列出SELinux的所有类别（type）种类
+-r：列出SELinux的所有角色（role）种类
+-u：列出SELinux的所有身份识别（user）种类
+-b：列出所有规则的种类（布尔值）
+
+sesearch [-a] [-s 主体类别] [-t 目标类别] [-b 布尔值]
+
+-a：列出该类别或布尔值的所有相关信息
+-t：后接类别
+-b：后接布尔值规则
+```
+
+* 布尔值的查询与修改
+
+```
+getsebool [-a] [布尔值条款]
+
+-a：列出目前系统上面的所有布尔值条款设定
+```
+
+* 默认目录的安全性文本查询与修改
+
+```
+semanage {login|user|port|interface|fcontext|translation} -l
+semanage fcontext -{a|d|m} [-frst] file_spec
+
+fcontext：主要用在安全性本文方面的用途，-l为查询的意思
+-a：增加
+-m：修改
+-d：删除
+```
+
+
+
+
+
+
+
+
 
 
