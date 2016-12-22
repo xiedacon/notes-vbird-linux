@@ -16,4 +16,5 @@
 * [磁盘配额\(Quota\)与进阶文件系统管理](磁盘配额quota与进阶文件系统管理.md)
 * [例行性工作排程（crontab）](例行性工作排程（crontab）.md)
 * [程序管理与SELinux初探](程序管理与selinux初探.md)
+* [认识系统服务（daemons）](认识系统服务（daemons）.md)
 
