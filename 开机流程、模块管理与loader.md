@@ -57,6 +57,159 @@
 
 ####init处理系统初始化流程（/etc/rc.d/rc.sysinit）
 
+1. 取得网络环境与主机类型
+2. 测试与挂载内存装置/proc及USE装置/sys
+3. 决定是否启动SELinux
+4. 启动系统的随机数生成器
+5. 设定终端机字型
+6. 设定显示与开机过程中的欢迎画面（text banner）
+7. 设定系统时间与时区设定
+8. 接口设备的检测与Plug and Play参数测试
+9. 用户自定义模块功能
+10. 加载核心相关设定
+11. 设定主机名与初始化电源管理模块（ACPI）
+12. 初始化软件磁盘阵列
+13. 初始化LVM的文件系统
+14. 以fsck检验磁盘文件系统
+15. 进行磁盘配额quota的转换（非必要）
+16. 重新以可擦写模式挂载系统磁盘
+17. 启动quota功能
+18. 启动系统虚拟随机数生成器（pseudo-random）
+19. 清除开机过程中的临时文件
+20. 将开机相关信息加载到/var/log/dmesg档案中
+
+####启动系统服务与相关启动配置文件（/etc/rc.d/rc N & /etc/sysconfig）
+
+####用户自定义开机启动程序（/etc/rc.d/rc.local）
+
+####依据/etc/inittab，加载终端机或X-Window
+
+####开机过程会用到的主要配置文件
+
+* 关于模块：/etc/modprobe.conf
+
+* /etc/sysconfig/*
+
+  * authconfig：主要在规范使用者的身份认证机制
+  * clock：设定Linux主机时区
+  * i18n：语系相关
+  * keyboard & mouse：设定键盘与鼠标形式
+  * network：网络相关
+  * network-script：主要用在设定网卡
+  
+####run level的切换
+
+init runlevel
+
+###核心与核心模块
+
+* 核心：/boot/vmlinuz或/boot/vmlinuz-version
+* 核心解压缩所需RAM Disk：/boot/initrd(/boot/initrd-version)
+* 核心模块：/lib/modules/version/kernel或/lib/modules/&(username)/kernel
+* 核心原始码：/usr/src/linux
+* 核心版本：/proc/version
+* 系统核心功能：/proc/sys/kernel
+
+####核心模块与相依性
+
+```
+depmod [-Ane]
+
+-A：更新modules.dep
+-n：不写入modules.dep，直接输出到屏幕上
+-e：显示目前已加载的不可执行模块
+```
+
+####核心模块的观察
+
+```
+lsmod
+
+modinfo [-adln] [module_name|filename]
+
+-a：仅列出作者名称
+-d：仅列出该modules的说明（description）
+-l：仅列出授权（license）
+-n：仅列出该模块的详细路径
+```
+
+####核心模块的加载与卸除
+
+```
+insmod [/full/path/module_name] [parameters]
+```
+
+```
+rmmod [-fw] module_name
+
+-f：强制删除
+-w：若模块正在使用，则等待该模块使用完毕后再移除
+```
+
+```
+modprobe [-lcfr] module_name
+
+-c：列出目前系统所有模块
+-l：列出磨枪再/lib/modules/uname/kernel当中的所有模块完整文件名
+-f：强制加载模块
+-r：移除模块
+```
+
+####核心模块的额外参数设定：/etc/modprobe.conf
+
+###Boot Loader：Grub
+
+####boot loader的两个stage
+
+* stage 1：执行boot loader主程序
+
+* stager 2：主程序加载配置文件
+
+####grub的配置文件/boot/grub/menu.lst与选单类型
+
+####initrd的重要性与建立新initrd档案
+
+```
+mkinitrd [-v] [--with=模块名称] initrd 文件名 核心版本
+
+-v：显示mkinitrd的运作过程
+initrd档名：要建立的initrd档名
+```
+
+####测试与安装grub
+
+```
+grub-install [--root-directory=DIR] INSTALL_DEVICE
+
+--root-directory=DIR：实际目录，默认在/boot/grub/*
+```
+
+###开机过程的问题解决
+
+####忘记root密码
+
+重新开机进入单人维护模式，使用passwd重设密码
+
+####init配置文件错误
+
+将第一支程序改为/bin/bash，将根目录挂载为可擦写，然后进行相关救援
+
+####BIOS磁盘对应问题（device.map）
+
+grub-install --recheck /dev/xxx
+
+####因文件系统错误而无法开机
+
+####利用chroot切换到另一个磁盘工作
+
+利用一个Linux系统修复坏的
+
+
+
+
+
+
+
 
 
 
