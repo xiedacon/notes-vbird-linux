@@ -19,4 +19,5 @@
 * [认识系统服务（daemons）](认识系统服务（daemons）.md)
 * [认识与分析登录档](认识与分析登录档.md)
 * [开机流程、模块管理与Loader](开机流程、模块管理与loader.md)
+* [软件安装：原始码与Tarball](软件安装：原始码与tarball.md)
 
