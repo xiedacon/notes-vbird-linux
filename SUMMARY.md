@@ -22,4 +22,5 @@
 * [软件安装：原始码与Tarball](软件安装：原始码与tarball.md)
 * [软件安装：包管理器](包管理器.md)
 * [Linux备份策略](linux备份策略.md)
+* [Linux核心编译与管理](linux核心编译与管理.md)
 
