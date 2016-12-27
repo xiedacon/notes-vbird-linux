@@ -42,8 +42,8 @@
 
 ### [软件安装：包管理器](https://github.com/xiedacon/notes-vbird-linux/blob/master/软件安装：包管理器.md)
 
-### [Linux备份策略](https://github.com/xiedacon/notes-vbird-linux/blob/master/Linux备份策略.md)
+### [Linux备份策略](https://github.com/xiedacon/notes-vbird-linux/blob/master/linux备份策略.md)
 
-### [Linux核心编译与管理](https://github.com/xiedacon/notes-vbird-linux/blob/master/Linux核心编译与管理.md)
+### [Linux核心编译与管理](https://github.com/xiedacon/notes-vbird-linux/blob/master/linux核心编译与管理.md)
 
-### [Linux常用网络命令](https://github.com/xiedacon/notes-vbird-linux/blob/master/Linux常用网络命令.md)
+### [Linux常用网络命令](https://github.com/xiedacon/notes-vbird-linux/blob/master/linux常用网络命令.md)
