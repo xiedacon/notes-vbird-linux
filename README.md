@@ -30,4 +30,20 @@
 
 ### [例行性工作排程（crontab）](https://github.com/xiedacon/notes-vbird-linux/blob/master/例行性工作排程（crontab）.md)
 
+### [系统管理与SELinux初探](https://github.com/xiedacon/notes-vbird-linux/blob/master/系统管理与SELinux初探.md)
 
+### [认识系统服务（daemons）](https://github.com/xiedacon/notes-vbird-linux/blob/master/认识系统服务（daemons）.md)
+
+### [认识与分析登录档](https://github.com/xiedacon/notes-vbird-linux/blob/master/认识与分析登录档.md)
+
+### [开机流程、模块管理与Loader](https://github.com/xiedacon/notes-vbird-linux/blob/master/开机流程、模块管理与Loader.md)
+
+### [软件安装：原始码与Tarball](https://github.com/xiedacon/notes-vbird-linux/blob/master/软件安装：原始码与Tarball.md)
+
+### [软件安装：包管理器](https://github.com/xiedacon/notes-vbird-linux/blob/master/软件安装：包管理器.md)
+
+### [Linux备份策略](https://github.com/xiedacon/notes-vbird-linux/blob/master/Linux备份策略.md)
+
+### [Linux核心编译与管理](https://github.com/xiedacon/notes-vbird-linux/blob/master/Linux核心编译与管理.md)
+
+### [Linux常用网络命令](https://github.com/xiedacon/notes-vbird-linux/blob/master/Linux常用网络命令.md)
