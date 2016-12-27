@@ -23,4 +23,5 @@
 * [软件安装：包管理器](包管理器.md)
 * [Linux备份策略](linux备份策略.md)
 * [Linux核心编译与管理](linux核心编译与管理.md)
+* [Linux常用网络命令](linux常用网络命令.md)
 
