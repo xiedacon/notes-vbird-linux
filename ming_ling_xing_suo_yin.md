@@ -8,17 +8,43 @@
   - [rm](#rm)
   - [mv](#mv)
   - [cp](#cp)
+  - [cat](#cat)
+  - [touch](#touch)
+  - [more](#more)
+  - [less](#less)
+  - [head](#head)
+  - [tail](#tail)
   
 
 * [程序管理相关](#程序管理相关)
-  - []()
+  - [ps](#ps)
+  - [top](#top)
+  - [jobs](#jobs)
+  - [kill](#kill)
+  - [killall](#killall)
+  - [bg](#bg)
+  - [fg](#fg)
+  - [tar](#tar)
+  - [gzip](#gzip)
   
 
 * [压缩相关](#压缩相关)
+  - [tar](#tar)
+  - [gzip](#gzip)
+  
 
 * [搜索相关](#搜索相关)
+  - [grep](#grep)
+  - [管线命令](#管线命令)
+  
 
 * [权限相关](#权限相关)
+  - [locate](#locate)
+  - [chmod](#chmod)
+  
+
+---
+
 
 ## 文件与目录管理相关
 
@@ -47,7 +73,9 @@ ls [-aAdfFhilnrRSt] 目录名称
 --time=atime/ctime：输出access时间或改变时间
 ```
 
-#####cd 改变目录
+#####cd
+
+> 改变目录
 
 ```
 .  代表这一层目录
@@ -235,7 +263,9 @@ top [-bnp]
   q：离开
 ```
 
-#####jobs 观察当前背景工作状态
+#####jobs
+
+> 观察当前背景工作状态
 
 ```
 jobs [-lrs]
