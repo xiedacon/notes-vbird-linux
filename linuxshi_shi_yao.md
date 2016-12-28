@@ -68,7 +68,7 @@ Linux是一种操作系统
 在Linux系统中，每一个装置都被当成一个档案来对待
 
 |装置|文件名|
-| -- | -- |
+| --- | --- |
 |IDE硬盘机|/dev/hd[a-d]|
 |SCSI/SATA/USB硬盘机|/dev/sd[a-p]|
 |USB快闪碟|/dev/sd[a-p]|
@@ -137,7 +137,7 @@ boot loader：是操作系统安装在MBR上的一套软件（先windows后linux
 
 ###命令行概述
 
-command [-options] parameter1 parameter2 ...
+> command [-options] parameter1 parameter2 ...
 
 ####基础指令
 

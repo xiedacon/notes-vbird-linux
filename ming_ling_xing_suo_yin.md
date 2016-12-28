@@ -1,5 +1,17 @@
 # 命令行索引
 
+- [基础命令](#基础命令)
+  - [date](#date)
+  - [cal](#cal)
+  - [bc](#bc)
+  - [man](#man)
+  - [info](#info)
+  - [sync](#sync)
+  - [shutdown](#shutdown)
+  - [reboot](#reboot)
+  - [poweroff](#poweroff)
+  
+
 - [文件与目录管理相关](#文件与目录管理相关)
   - [ls](#ls)
   - [cd](#cd)
@@ -45,6 +57,104 @@
 
 ---
 
+## 基础命令
+
+#####date
+
+> 显示日期
+
+```
+date
+date +%Y%m%d
+```
+
+#####cal
+
+> 显示日历
+
+```
+cal [month] [year]
+```
+
+#####bc
+
+> 计算器
+
+#####man
+
+> man page
+
+```
+man [number] command
+
+number：表示command类型的代号
+  1：用户在shell环境中可以操作的指令或可执行文件
+  2：系统核心可呼叫的函数与工具等
+  3：一些常用的函数与函数库，大部分为C的函数库
+  4：装置档案的说明，通常在/dev下的档案
+  5：配置文件或者是某些档案的样式
+  6：游戏
+  7：惯例与协议等，例如Linux文件系统、网络协议、ASCII code 等等的说明
+  8：系统管理员可用的管理指令
+  9：跟kernel有关的文件
+  
+man page的内容划分：
+  NAME：简短的指令、数据名称说明
+  SYNOPSIS：简短的指令下达语法简介
+  DESCRIPTION：较为完整的说明
+  OPTIONS：针对SYNOPSIS部分中，有列举的所有可用的选项说明
+  COMMANDS：当这个程序在执行的时候，可以在此程序中下达的指令
+  FILES：这个程序或数据所使用或参考或链接到的某些档案
+  SEE ALSO：可以参考的，跟这个指令或数据相关的其他说明
+  EXAMPLE：一些可以参考的范例
+  BUGS
+
+man page的常用按键：
+  space：向下翻页
+  page down：向下翻页
+  page up：向上翻页
+  home：到第一页
+  end：到最后一页
+  /string：向下搜寻string
+  ?string：向上搜寻string
+  n：继续搜寻
+  N：反向搜寻
+  q：结束
+```
+
+#####info
+
+> 与man相似，略
+
+#####sync
+
+> 将数据同步写入硬盘
+
+#####shutdown
+
+> 惯用的关机指令
+
+```
+shutdown [-t 秒] [-arkhncfF] 时间 [警告讯息]
+
+-t：后接秒数，即过几秒后关机
+-k：不是真的关机，只是将警告讯息发送出去
+-r：在将系统的服务停掉后就重新启动（常用）
+-h：将系统的服务停掉后，立即关机（常用）
+-n：不经过init程序，直接以shutdown的功能来关机
+-f：系统重新启动后，强制略过fsck的磁盘检查
+-F：系统重新启动后，强制进行fsck的磁盘检查
+-c：取消已经在进行的shutdown指令内容
+时间：一定要加入的参数，指定系统关机的时间
+```
+
+#####reboot
+
+> 重启
+
+#####poweroff
+
+> 关机
 
 ## 文件与目录管理相关
 
