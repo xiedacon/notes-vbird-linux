@@ -1,13 +1,32 @@
 # 命令行索引
 
-- []
+- [文件与目录管理相关](#文件与目录管理相关)
+  - [ls](#ls)
+  - [cd](#cd)
+  - [pwd](#pwd)
+  - [mkdir](#mkdir)
+  - [rm](#rm)
+  - [mv](#mv)
+  - [cp](#cp)
+  
 
+* [程序管理相关](#程序管理相关)
+  - []()
+  
 
-* ls
+* [压缩相关](#压缩相关)
 
-ls [-aAdfFhilnrRSt] 目录名称
+* [搜索相关](#搜索相关)
+
+* [权限相关](#权限相关)
+
+## 文件与目录管理相关
+
+#####ls
 
 ```
+ls [-aAdfFhilnrRSt] 目录名称
+
 -a：全部档案，连同隐藏档一起列出来
 -A：全部档案，连同隐藏档一起列出来，但不包括 . 与 .. 这两个目录
 -d：仅列出目录，而不列出目录内的档案数据
@@ -28,7 +47,7 @@ ls [-aAdfFhilnrRSt] 目录名称
 --time=atime/ctime：输出access时间或改变时间
 ```
 
-* cd 改变目录
+#####cd 改变目录
 
 ```
 .  代表这一层目录
@@ -37,46 +56,52 @@ ls [-aAdfFhilnrRSt] 目录名称
 ~  代表当前用户的home目录
 ```
 
-* pwd (Print Working Directory)
+#####pwd
 
-pwd [-P]
+>Print Working Directory
 
 ```
+pwd [-P]
+
 -P：显示出确定的路径，而非使用link路径
 ```
 
-* mkdir
+#####mkdir
 
-mkdir [-mp] 目录名称
 ```
+mkdir [-mp] 目录名称
+
 -m：配置文件的权限
 -p：建立多层目录
 ```
 
-* rm
+#####rm
 
-rm [-fir] 档案或目录
 ```
+rm [-fir] 档案或目录
+
 -f：force 强制执行，忽略警告信息
 -i：互动模式，在删除前询问是否删除
 -r：递归执行
 ```
 
-* mv
+######mv
 
-mv [-fiu] source destination
-mv [option] source1 source2 ... directory
 ```
+mv [-fiu] source destination  
+mv [option] source1 source2 ... directory
+
 -f：强制执行
 -i：互动模式
 -u：若目标档案已存在，且source更新，才会更新
 ```
 
-* cp
+#####cp
 
-cp [-adfilprsu] source destination
-cp [options] source1 source2 ... directory
 ```
+cp [-adfilprsu] source destination  
+cp [options] source1 source2 ... directory
+
 -a：相当于-pdr
 -d：若来源文件为link文件的属性，则复制link文件的属性而非档案本身
 -f：强制执行，若目标档案已存在且无法开启，则移除后再尝试一次
@@ -88,11 +113,13 @@ cp [options] source1 source2 ... directory
 -u：更新
 ```
 
-* cat (concatenate)浏览文档
+#####cat
 
-cat [-AbEnTv]
+>concatenate 浏览文档
 
 ```
+cat [-AbEnTv]
+
 -A：相当于-vET
 -b：列出行号，空白行不标行号
 -E：显示断行字符$
@@ -101,10 +128,13 @@ cat [-AbEnTv]
 -v：列出一些看不出来的特殊字符
 ```
 
-* touch 建立一个空档/修订时间
+#####touch
 
-touch [-acdmt] 档案
+>建立一个空档/修订时间
+
 ```
+touch [-acdmt] 档案
+
 modification time (mtime)：内容改变时更新
 status time (stime)：状态改变时更新
 access time (atime)：读取时更新
@@ -116,7 +146,9 @@ access time (atime)：读取时更新
 -t：后面可以接欲修订的时间而不用目前的时间，格式为[YYMMDDhhmm]
 ```
 
-* more 一页一页翻动
+#####more
+
+> 一页一页翻动
 
 ```
 space：下一页
@@ -127,7 +159,9 @@ q：离开
 b/[ctrl] b：往回翻页，对管线无用
 ```
 
-* less 一页一页翻动
+#####less
+
+> 一页一页翻动
 
 ```
 space：下一页
@@ -140,22 +174,30 @@ N：反向重复前一搜寻
 q：离开
 ```
 
-* head 取出前面几行
+#####head
 
-head [-n number] 档案
+> 取出前面几行
+
 ```
+head [-n number] 档案
+
 -n：后接数字，代表行数
 ```
 
-* tail 取出后面几行
+#####tail
 
-tail [-n number] 档案
+> 取出后面几行
+
 ```
+tail [-n number] 档案
+
 -n：后接数字，代表行数
 -f：表示持续侦测后面所接的档名
 ```
 
-* ps
+## 程序管理相关
+
+#####ps
 
 ```
 ps aux：观察系统所有程序的数据
@@ -171,7 +213,7 @@ j：工作的格式
 -f：做一个更为完整的输出
 ```
 
-* top
+#####top
 
 ```
 top [-d 数字]
@@ -193,7 +235,7 @@ top [-bnp]
   q：离开
 ```
 
-* jobs 观察当前背景工作状态
+#####jobs 观察当前背景工作状态
 
 ```
 jobs [-lrs]
@@ -203,7 +245,7 @@ jobs [-lrs]
 -s：仅列出正在stop的工作
 ```
 
-* kill
+#####kill
 
 ```
 kill -signal PID
@@ -217,11 +259,10 @@ signal（讯号）
   更多信息自行man 7 signal
 ```
 
-* killall
+#####killall
 
-
-killall [-iIe] [command name]
 ```
+killall [-iIe] [command name]
 killall -signal 指令名称
 
 -i：交互模式
@@ -229,19 +270,25 @@ killall -signal 指令名称
 -I：指令名称（可能含参数）忽略大小写
 ```
 
-* bg 让一个工作在背景下运行
+#####bg
+
+> 让一个工作在背景下运行
 
 ```
 bg % jobnumber
 ```
 
-* fg 将背景工作拿到前景来处理
+#####fg
+
+> 将背景工作拿到前景来处理
 
 ```
 fg % jobnumber
 ```
 
-* tar
+## 压缩相关
+
+#####tar
 
 ```
 tar [-j|-z] [cv] [-f 建立的档名] filename ... // 打包/压缩
@@ -260,11 +307,11 @@ tar [-j|-z] [xv] [-f 建立的档名] [-C 目录]   // 解压缩
 -P：保留绝对路径，即允许备份数据中含有根目录的意思
 ```
 
-* gzip
-
-gzip [-cdtv#] 档名
+#####gzip
 
 ```
+gzip [-cdtv#] 档名
+
 -c：将压缩的数据输出到屏幕上，可透过数据流重导向来处理
 -d：解压缩的参数
 -t：可以用来检验一个压缩文件的一致性
@@ -272,10 +319,13 @@ gzip [-cdtv#] 档名
 -#：压缩等级。-1最快，但压缩比差。-9最慢，但压缩比好。预设是-6
 ```
 
-* grep
+## 搜索相关
 
-grep [-acinv] [--color=auto] '搜索字符串' filename
+#####grep
+
 ```
+grep [-acinv] [--color=auto] '搜索字符串' filename
+
 -a：将binary档案以text档案方式搜寻数据
 -c：计算找到'搜寻字符串'的次数
 -i：忽略大小写
@@ -284,30 +334,33 @@ grep [-acinv] [--color=auto] '搜索字符串' filename
 --color=auto：将找到的关键字加上颜色显示
 ```
 
-* 管线命令
+#####管线命令
 
 ```
 command1 | command2 | command3
 将1的输出作为2的输入，将2的输出作为3的输入
 ```
 
-* locate
+## 权限相关
 
-locate [-ir] keyword
+#####locate
+
 ```
+locate [-ir] keyword
+
 -i：忽略大小写
 -r：正则表达式
 ```
 
-* chmod
+#####chmod
 
-chmod [-R] xyz 档案或目录
 ```
+chmod [-R] xyz 档案或目录
+
 -R：递归变更
 数字类型代表档案权限
 r：4，w：2，x：1
 ```
-
 
 
 
