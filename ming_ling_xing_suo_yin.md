@@ -10,7 +10,22 @@
   - [shutdown](#shutdown)
   - [reboot](#reboot)
   - [poweroff](#poweroff)
-  
+  - [dos2unix,unix2dos](#dos2unix,unix2dos)
+  - [iconv](#iconv)
+  - [type](#type)
+  - [echo](#echo)
+  - [unset](#unset)
+  - [env](#env)
+  - [export](#export)
+  - [read](#read)
+  - [declare](#declare)
+  - [ulimit](#ulimit)
+  - [alias,unalias](#alias,unalias)
+  - [history](#history)
+  - [source](#source)
+  - [sh](#sh)
+  - [set](#set)
+
 
 - [文件与目录管理相关](#文件与目录管理相关)
   - [ls](#ls)
@@ -31,17 +46,43 @@
   - [tail](#tail)
   - [od](#od)
   - [ln](#ln)
-  
 
-* [程序管理相关](#程序管理相关)
+
+* [程序管理与SELinux相关](#程序管理与SELinux相关)
   - [ps](#ps)
   - [top](#top)
+  - [pstree](#pstree)
   - [jobs](#jobs)
   - [kill](#kill)
   - [killall](#killall)
   - [bg](#bg)
   - [fg](#fg)
-  
+  - [nohup](#nohup)
+  - [at](#at)
+  - [atq](#atq)
+  - [atrm](#atrm)
+  - [crontab](#crontab)
+  - [anacron](#anacron)
+  - [nice](#nice)
+  - [renice](#renice)
+  - [free](#free)
+  - [uname](#uname)
+  - [uptime](#uptime)
+  - [dmesg](#dmesg)
+  - [vmstat](#vmstat)
+  - [fuser](#fuser)
+  - [lsof](#lsof)
+  - [pidof](#pidof)
+  - [getenforce](#getenforce)
+  - [sestatus](#sestatus)
+  - [setenforce](#setenforce)
+  - [chron](#chron)
+  - [restorecon](#restorecon)
+  - [seinfo](#seinfo)
+  - [sesearch](#sesearch)
+  - [getsebool](#getsebool)
+  - [semanage](#semanage)
+
 
 * [压缩相关](#压缩相关)
   - [compress](#compress)
@@ -52,24 +93,61 @@
   - [restore](#restore)
   - [dd](#dd)
   - [cpio](#cpio)
-  
 
-* [搜索相关](#搜索相关)
+
+* [搜索与字符处理相关](#搜索与字符处理相关)
   - [which](#which)
   - [whereis](#whereis)
   - [locate](#locate)
   - [find](#find)
+  - [cut](#cut)
   - [grep](#grep)
+  - [sort](#sort)
+  - [uniq](#uniq)
+  - [wc](#wc)
+  - [tee](#tee)
+  - [tr](#tr)
+  - [col](#col)
+  - [join](#join)
+  - [paste](#paste)
+  - [expand](#expand)
+  - [split](#split)
+  - [xargs](#xargs)
+  - [sed](#sed)
+  - [printf](#printf)
+  - [awk](#awk)
+  - [diff](#diff)
+  - [cmp](#cmp)
+  - [patch](#patch)
   - [管线命令](#管线命令)
-  
 
-* [权限相关](#权限相关)
+
+* [权限与账号管理相关](#权限与账号管理相关)
   - [umask](#umask)
   - [chattr](#chattr)
   - [lsattr](#lsattr)
   - [chmod](#chmod)
-  
-* [磁盘相关](#磁盘相关)
+  - [groups](#groups)
+  - [newgrp](#newgrp)
+  - [useradd](#useradd)
+  - [passwd](#passwd)
+  - [chage](#chage)
+  - [usermod](#usermod)
+  - [userdel](#userdel)
+  - [finger](#finger)
+  - [chfn](#chfn)
+  - [chsh](#chsh)
+  - [id](#id)
+  - [groupadd](#groupadd)
+  - [groupmod](#groupmod)
+  - [groupdel](#groupdel)
+  - [gpasswd](#gpasswd)
+  - [setfacl](#setfacl)
+  - [getfacl](#getfacl)
+  - [su](#su)
+  - [sudo](#sudo)
+
+* [磁盘与文件系统相关](#磁盘与文件系统相关)
   - [dumpe2fs](#dumpe2fs)
   - [df](#df)
   - [du](#du)
@@ -81,7 +159,16 @@
   - [umount](#umount)
   - [mknod](#mknod)
   - [hdparm](#hdparm)
-  
+  - [quotacheck](#quotacheck)
+  - [quotaon](#quotaon)
+  - [quotaoff](#quotaoff)
+  - [edquota](#edquota)
+  - [quota](#quota)
+  - [repquota](#repquota)
+  - [warnquota](#warnquota)
+  - [setquota](#setquota)
+  - [mdadm](#mdadm)
+
 
 ---
 
@@ -125,7 +212,7 @@ number：表示command类型的代号
   7：惯例与协议等，例如Linux文件系统、网络协议、ASCII code 等等的说明
   8：系统管理员可用的管理指令
   9：跟kernel有关的文件
-  
+
 man page的内容划分：
   NAME：简短的指令、数据名称说明
   SYNOPSIS：简短的指令下达语法简介
@@ -183,6 +270,176 @@ shutdown [-t 秒] [-arkhncfF] 时间 [警告讯息]
 #####poweroff
 
 > 关机
+
+#####dos2unix,unix2dos
+
+> DOS与Linux的断行字符
+
+```
+dos2unix [-kn] file [newfile]
+unix2dos [-kn] file [newfile]
+
+-k：保留该档案原本的mtime时间格式
+-n：保留原本的旧档，将转换后的内容输出到新档案
+```
+
+#####iconv
+
+> 语系编码转换
+
+```
+iconv --list
+iconv -f 原本编码 -t 新编码 filename [o newfile]
+
+--list：列出iconv支持的语系数据
+-f：from，后接原本的编码格式
+-t：to，后接新编码格式
+-o file：后接新档名，保留原档
+```
+
+#####type
+
+> Bash shell的内建命令
+
+```
+type [-tpa] name
+
+不加任何选项与参数是，type会显示出name是外部指令还是bash内建指令
+-t：type会将name以下列字眼显示出他的意义
+  file：表示为外部指令
+  alias：表示该指令为命令别名所设定的名称
+  builtin：表示该指令为bash内建的指令功能
+-p：如果后面接的name为外部指令时，才会显示完整文件名
+-a：会将由PATH变量定义的路径中，将所有含name的指令都列出来，包含alias
+```
+
+#####echo
+
+> 变量的取用
+
+```
+echo $variable
+```
+
+#####unset
+
+> 取消变量
+
+```
+unset name
+```
+
+#####env
+
+> 观察环境变量
+
+#####export
+
+> 将自定义变量转成环境变量
+
+#####read
+
+> 变量键盘读取
+
+```
+read [-pt] variable
+
+-p：后接提示字符
+-t：后接等待秒数
+```
+
+#####declare
+
+> 变量宣告
+
+```
+declare [-aixr] variable
+
+-a：将后接变量定义为数组
+-i：将后接变量定义为整型数字
+-x：将后接变量导出为环境变量
+-r：将后接变量定义为readonly类型，不能修改，也不能unset
+```
+
+#####ulimit
+
+> 限制用户的系统资源使用量
+
+```
+ulimit [-SHacdfltu] [配额]
+
+-H：hard limit，严格设定，必定不能超过设定值
+-S：soft limit，警告设定，可以超过，超过会有警告信息
+-a：后将不接任何选项与参数，可列出所有的限制额度
+-c：限制每个核心档案的最大容量
+-f：此shell可建立的最大档案容量，单位为kbytes
+-d：程序可使用的最大内存容量
+-l：可用于锁定（lock）的内存量
+-t：可使用的最大CPU时间，单位为秒
+-u：单一用户可以使用的最大程序数量
+```
+
+#####alias,unalias
+
+> 命令别名设定与取消
+
+```
+alias xx='xxx'
+unalias xx
+```
+
+#####history
+
+> 历史命令
+
+```
+history [n]
+history [-c]
+history [-raw] histfiles
+
+n：列出最近n笔命令
+-c：将shell中的history内容全部清除
+-a：将新增的history指令新增入histfiles中，若没有histfiles，则写入~/.bash_history
+-r：将histfiles的内容读到目前shell的history中
+-w：将目前的history写入histfiles中
+```
+
+#####source
+
+> 读入环境配置文件
+
+```
+source 配置文件档名
+```
+
+#####sh
+
+> 执行shell脚本
+
+```
+sh [-nvx] script.sh
+
+-n：不执行script，仅检查语法
+-v：执行script之前，先把script的内容输出到屏幕上
+-x：将使用到的script内容显示到屏幕上
+```
+
+#####set
+
+> 终端机环境设定
+
+```
+set [-uvCHhmBx]
+
+-u：预设不启用。启用后，当使用未设定变量时，会显示错误信息
+-v：预设不启用。启用后，在信息被输出前，会先显示信息的原始内容
+-x：预设不启用。启用后，在指令被执行前，会显示指令内容
+-h：预设启用。与历史命令有关
+-H：预设启用。与历史命令有关
+-m：预设启用。与工作管理有关
+-B：预设启用。与[]的作用有关
+-C：预设不启用。若使用>等，则若档案存在时，该档案不会被覆盖
+```
 
 ## 文件与目录管理相关
 
@@ -442,9 +699,11 @@ ln [-sf] 来源文件 目录文件
 -f：如果目标文件存在时，就主动将目标文件直接移除后再建立
 ```
 
-## 程序管理相关
+## 程序管理与SELinux相关
 
 #####ps
+
+> 将某个时间点的程序运作情况截取下来
 
 ```
 ps aux：观察系统所有程序的数据
@@ -461,6 +720,8 @@ j：工作的格式
 ```
 
 #####top
+
+> 动态观察程序的变化
 
 ```
 top [-d 数字]
@@ -482,6 +743,19 @@ top [-bnp]
   q：离开
 ```
 
+#####pstree
+
+> 将某个时间点的程序运作情况截取下来，以程序树的形式
+
+```
+pstree [-A|U] [-up]
+
+-A：各程序树之间的连接以ASCII字符来连接
+-U：各程序树之间的连接以UTF-8字符来连接
+-p：列出每个process的PID
+-u：列出每个processd的所属账号名称
+```
+
 #####jobs
 
 > 观察当前背景工作状态
@@ -495,6 +769,8 @@ jobs [-lrs]
 ```
 
 #####kill
+
+> 管理背景中的工作
 
 ```
 kill -signal PID
@@ -521,10 +797,12 @@ killall -signal 指令名称
 
 #####bg
 
-> 让一个工作在背景下运行
+> 让背景下的状态变成运作中
 
 ```
-bg % jobnumber
+bg %jobnumber
+
+%jobnumber：jobnumber为工作号码，%是可有可无的
 ```
 
 #####fg
@@ -532,7 +810,288 @@ bg % jobnumber
 > 将背景工作拿到前景来处理
 
 ```
-fg % jobnumber
+fg %jobnumber
+
+%jobnumber：jobnumber为工作号码，%是可有可无的
+```
+
+#####nohup
+
+> 程序脱机执行
+
+```
+nohup [指令与参数]      //在终端机前景工作
+nohup [指令与参数] &    //在终端机背景工作
+```
+
+#####at
+
+> at是个可以处理仅执行一次就结束排程的指令，执行时，必须要有atd这个服务的支持
+
+```
+at [-mldv] TIME
+at -c 工作号码
+
+-m：完成后，使用email通知使用者
+-l：相当于atq，列出系统上的所有该用户的at排程
+-d：相当于atm，可以取消一个在at排程中的工作
+-v：时间格式
+-c：列出后接的该项工作的实际指令内容
+TIME：时间格式
+```
+
+#####atq
+
+> 查询系统上有多少at工作排程
+
+#####atrm
+
+> 移除某个工作排程
+
+```
+atrm [jobnumber]
+```
+
+#####crontab
+
+> crontab这个指令所设定的工作会循环执行下去
+
+```
+crontab [-u username] [-l|-e|-r]
+
+-u：只有root才能进行这个任务
+-e：编辑crontab的工作内容
+-l：查看crontab的工作内容
+-r：移除所有crontab的工作内容
+```
+
+#####anacron
+
+> 可唤醒停机期间的工作任务
+
+```
+anacron [-sfn] [job] ...
+anacron -u [job] ...
+
+-s：开始一连续的执行各项工作 (job)，会依据时间记录文件的数据判断是否进行
+-f：强制
+-n：立即执行未进行的任务
+-u：仅更新时间记录文件的时间戳，不进行任何操作
+job：由/etc/anacrontab定义的各项工作名称
+```
+
+#####nice
+
+> 给予新执行的指令新的nice值
+
+```
+nice [-n 数字] command
+
+-n：后接数值，范围-20~19
+```
+
+#####renice
+
+> 已存在程序的nice重新设定
+
+```
+renice [number] PID
+```
+
+#####free
+
+> 观察内存使用情况
+
+```
+free [-b|-k|-m|-g|] [-t]
+
+-b：B
+-k：K
+-m：M
+-g：G
+-t：在输出的最终结果，显示物理内存与swap总量
+```
+
+#####uname
+
+> 检查系统与核心相关信息
+
+```
+uname [-asrmpi]
+
+-a：所有系统相关的信息
+-s：系统核心名称
+-r：核心版本
+-m：本系统的硬件名称
+-p：CPU类型
+-i：硬件平台
+```
+
+#####uptime
+
+> 观察系统启动时间与工作负载
+
+#####dmesg
+
+> 分析核心产生的信息
+
+#####vmstat
+
+> 侦测系统资源变化
+
+```
+vmstat [-a] [延迟 [总计侦测次数]]    //CPU/内存等信息
+vmstat [-fs]                       //内存相关
+vmstat [-S 单位]                   //设定显示数据的单位
+vmstat [-d]                       //与磁盘有关
+vmstat [-p 分割槽]                 //与磁盘有关
+
+-a：使用inactive/active取代buffer/cache的内存输出信息
+-f：将开机到目前位置，系统复制（fork）的程序数
+-s：将一些事件导致的内存变化情况列表说明
+-S：后接单位，显示的数据单位
+-d：列出磁盘的读写总量统计表
+-p：后面列出分割槽，可显示该分割槽的读写总量统计表
+```
+
+######fuser
+
+> 借由档案找出正在使用该档案的程序
+
+```
+fuser [-umv] [-k [i] [-signal]] file/dir
+
+-u：除了PID外，同时列出程序的拥有者
+-m：后接档名会主动上提到该文件系统的最顶层
+-v：可以列出每个档案与程序还有指令的完整相关性
+-k：找出使用该档案/目录的PID，并试图给予该signal
+-i：与-k配合，交互
+-signal：讯号
+```
+
+#####lsof
+
+> 列出被程序所开启的档案文件名
+
+```
+lsof [-aUu] [+d]
+
+-a：多项数据需要同时成立才显示结果
+-U：仅列出Unix Like系统的socket文件类型
+-u：后接username，列出该用户相关程序所开启的档案
++d：后接目录，找出某个目录底下已经被开启的档案
+```
+
+#####pidof
+
+> 找某支正在执行程序的PID
+
+```
+pidof [-sx] program_name
+
+-s：仅列出一个PID而不列出所有的PID
+-x：同时列出该program name可能的PPID那个程序的PID
+```
+
+#####getenforce
+
+> 显示目前的SELinux模式
+
+#####sestatus
+
+> 查看SELinux的状态
+
+```
+sestatus [-vb]
+
+-v：检查位于/etc/sestatus.conf内的档案与程序的安全性文本内容
+-b：将目前政策的规则布尔值列出
+```
+
+#####setenforce
+
+> 改变SELinux的模式
+
+```
+setenforce [0|1]
+
+0：转成permissive模式
+1：转成enforcing模式
+```
+
+#####chron
+
+> 重设SELinux安全性本文
+
+```
+chron [-R] [-t type] [-u user] [-r role] 档案
+chcon [-R] --reference=范例文件 档案
+
+-R：连同该目录下的次目录也同时修改
+-t：后接安全性本文的类型字段
+-u：后接身份识别
+-r：后接角色
+```
+
+######restorecon
+
+> 重设SELinux安全性本文
+
+```
+restorecon [-Rv] 档案或目录
+
+-R：连同次目录一起修改
+-v：将过程显示到屏幕上
+```
+
+#####seinfo
+
+> 政策查询
+
+```
+seinfo [-Atrub]
+
+-A：列出SELinux的状态、规则布尔值、身份识别、角色、类别等所有信息
+-t：列出SELinux的所有类别（type）种类
+-r：列出SELinux的所有角色（role）种类
+-u：列出SELinux的所有身份识别（user）种类
+-b：列出所有规则的种类（布尔值）
+```
+
+#####sesearch
+
+> 政策查询
+
+```
+sesearch [-a] [-s 主体类别] [-t 目标类别] [-b 布尔值]
+
+-a：列出该类别或布尔值的所有相关信息
+-t：后接类别
+-b：后接布尔值规则
+```
+
+#####getsebool
+
+> 查看布尔值条款设定
+
+```
+getsebool [-a] [布尔值条款]
+
+-a：列出目前系统上面的所有布尔值条款设定
+```
+
+#####semanage
+
+> 默认目录的安全性文本查询与修改
+
+```
+semanage {login|user|port|interface|fcontext|translation} -l
+semanage fcontext -{a|d|m} [-frst] file_spec
+
+fcontext：主要用在安全性本文方面的用途，-l为查询的意思
+-a：增加
+-m：修改
+-d：删除
 ```
 
 ## 压缩相关
@@ -670,7 +1229,7 @@ cpio -ivct < [file|device]    //查看
 -c：一种较新的portable format方式储存
 ```
 
-## 搜索相关
+## 搜索与字符处理相关
 
 #####which
 
@@ -737,17 +1296,242 @@ find [PATH] [option] [action]
   -print：将结果打印到屏幕上（默认值）
 ```
 
+#####cut
+
+> 截取命令
+
+```
+cut -d '分隔字符' -f fields     //用于由特定分隔字符
+cut -c 字符区间                 //用于排列整齐的信息
+
+-d：后接分隔字符，与-f一起使用
+-f：依据-d的分隔字符将一段信息分割成数段，用-f取出第几段
+-c：以字符的单位取出固定字符区间
+```
+
 #####grep
+
+> 截取命令
 
 ```
 grep [-acinv] [--color=auto] '搜索字符串' filename
+grep [-A] [-B] [--color=auto] '搜寻字符串' filename
 
 -a：将binary档案以text档案方式搜寻数据
 -c：计算找到'搜寻字符串'的次数
 -i：忽略大小写
 -n：输出行号
 -v：反向选择
+-A：after，后接数字，除了列出该列外，后续的n列也列出来
+-B：befer，后接数字，除了列出该列外，前面的n列也列出来
 --color=auto：将找到的关键字加上颜色显示
+```
+
+#####sort
+
+> 排序命令
+
+```
+sort [-fbMnrtuk] [file or stdin]
+
+-f：忽略大小写
+-b：忽略最前面的空格部分
+-M：以月份来排序
+-n：使用纯数字进行排序
+-r：反向排序
+-u：相同数据中，仅出现一行代表
+-t：分隔符，默认以tab键来分隔
+-k：以某个区间来进行排序
+```
+
+#####uniq
+
+> 排序命令
+
+```
+uniq [-ic]
+
+-i：忽略大小写字符的不同
+-c：进行计数
+```
+
+#####wc
+
+> 排序命令
+
+```
+wc [-lwm]
+
+-l：仅列出行
+-w：仅列出字数
+-m：字符数
+```
+
+#####tee
+
+> 双向重导向
+
+```
+tee [-a] file
+
+-a：以累加的方式，将数据加入file中
+```
+
+#####tr
+
+> 字符串转换命令
+
+```
+tr [-ds] SET1...
+
+-d：删除信息中的SET1这个字符串
+-s：取代字符
+```
+
+#####col
+
+> 字符串转换命令
+
+```
+col [-xb]
+
+-x：将tab键转换成对等的空格键
+-b：在文字内有/时，仅保留最后接的那个字符
+```
+
+#####join
+
+> 字符串转换命令
+
+```
+join [-ti12] file1 file2
+
+-t：设置分隔符，默认为空格符
+-i：忽略大小写
+-1：代表第一个档案用哪个字段来分 析
+-2：代表第二个档案用哪个字段来分析
+```
+
+#####paste
+
+> 字符串转换命令
+
+```
+paste [-d] file1 file2
+
+-d：后接分隔字符，默认为tab键
+- ：表示来自standard input的资料
+```
+
+#####expand
+
+> 字符串转换命令
+
+```
+expand [-t] file
+
+-t：后接数字，表示一个tab键用几个空格替代
+```
+
+#####split
+
+> 分隔命令
+
+```
+split [-bl] file PREFIX
+
+-b：后接分割成的档案大小，可加单位，b，k，m等
+-l：以行数来进行分割
+PREFIX：代表前导符
+```
+
+#####xargs
+
+> 参数替换
+
+```
+xargs [-Oepn] command
+
+-O：当输入的stdin含有特殊字符时使用
+-e：EOF（end of file），后接字符串，当xargs解析到这个字符串时，就会停止工作
+-p：在执行每个指令的argument时，都会询问使用者
+-n：后接次数，每次command指令执行时，要使用几个参数
+```
+
+#####sed
+
+> sed工具
+
+```
+sed [-nefr] [动作]
+
+-n：使用silent模式。在一般sed的用法中，所有来自stdin的数据一般都会被列出到屏幕上。加上后，只有经过sed特殊处理的那一行才会被列出来
+-e：直接在命令行模式上进行sed的动作编辑
+-f：后接filename，一个档案内的sed动作
+-r：sed动作支持的扩展正则表达式语法
+-i：直接修改档案内容，而不是屏幕输出
+
+动作说明：[n1[,n2]]function
+n1,n2：代表选择进行动作的列数
+function：
+  a：新增，后接字符串
+  c：取代，后接字符串
+  d：删除
+  i：插入，后接字符串
+  p：打印
+  s：取代，后接正则
+```
+
+#####printf
+
+> 格式化打印
+
+```
+printf '打印格式' 实际内容
+```
+
+#####awk
+
+> 数据处理工具
+
+```
+awk '条件类型1 {动作1} 条件类型2 {动作2} ...' filename
+```
+
+#####diff
+
+> 档案对比工具
+
+```
+diff [-bBi] from to
+
+from：原始比对档案
+to：目的比对档案
+-b：忽略空白字符的差异
+-B：忽略空白行的差异
+-i：忽略大小写
+```
+
+#####cmp
+
+> 档案对比工具
+
+```
+cmp [-s] file1 file2
+
+-s：将所有不同字符全部列出来，默认只会输出第一个
+```
+
+#####patch
+
+> 档案对比工具
+
+```
+patch -pN < file       //更新
+patch -R -pN < file    //还原
+
+-p：后接数字，取消几层目录的意思
+-R：代表还原
 ```
 
 #####管线命令
@@ -757,7 +1541,7 @@ command1 | command2 | command3
 将1的输出作为2的输入，将2的输出作为3的输入
 ```
 
-## 权限相关
+## 权限与账号管理相关
 
 #####umask
 
@@ -811,7 +1595,245 @@ chmod [-R] xyz 档案或目录
 r：4，w：2，x：1
 ```
 
-##磁盘相关
+#####groups
+
+> 观察有效与支持群组
+
+#####newgrp
+
+> 创建群组
+
+```
+newgrp 组名
+```
+
+#####useradd
+
+> 新增使用者
+
+```
+useradd [-u UID] [-g 初始群组] [-G 次要群组] [-mM] [-c 说明档] [-d 家目录绝对路径] [-s shell] 使用者账号名
+
+-u：后接UID
+-g：后接组名
+-G：后接组名
+-M：强制不建立用户家目录（系统账号默认值）
+-m：强制建立用户家目录（一般账号默认值）
+-c：后接说明
+-d：指定某个目录成为家目录，而不使用默认值
+-r：建立一个系统账号
+```
+
+#####passwd
+
+> 用户密码管理
+
+```
+passwd [--stdin]  //所有人都可以用来修改自己的密码
+passwd [-l] [-u] [--stdin] [-S] [-n 天数] [-x 天数] [-w 天数] [-i 日期] 账号  //root专用
+
+--stdin：可以通过管线来作为密码输入
+-l：lock，会将/etc/shadow第二栏加上!使密码失效
+-u：unlock
+-S：列出密码相关参数
+-n：后接天数，shadow的第4字段，不可修改密码天数
+-x：后接天数，shadow的第5字段，必须改动密码天数
+-w：后接天数，shadow的第6字段，密码过去前警告天数
+-i：后接日期，shadow的第7字段，密码失效日期
+```
+
+#####chage
+
+> 用户相关设置
+
+```
+chage [-ldEImMW] 账号名
+
+-l：列出该账号的详细密码参数
+-d：后接日期，shadow第3字段，最近一次修改密码日期
+-E：后接日期，shadow第8字段，账号失效日期
+-I：后接天数，shadow第7字段，密码失效日期
+-m：后接天数，shadow第4字段，密码最短保留天数
+-M：后接天数，shadow第5字段，密码多久需要进行修改
+-W：后接天数，shadow第6字段，密码过期前警告日期
+```
+
+#####usermod
+
+> 用户相关设置
+
+```
+usermod [-cdegGlsuLU] username
+
+-c：后接账号说明
+-d：后接账号家目录
+-e：后接日期
+-f：后接天数
+-g：后接初始群组
+-G：后接次要群组
+-a：于-G合用，增加次要群组支持
+-l：后接账号名称，即修改账号名称
+-s：后接shell档案
+-u：后接UID
+-L：将用户密码冻结，使其无法登入
+-U：解冻用户
+```
+
+#####userdel
+
+> 删除用户
+
+```
+userdel [-r] username
+
+-r：连同用户的家目录也一起删除
+```
+
+#####finger
+
+> 用户拥有功能
+
+```
+finger [-s] username
+
+-s：仅列出用户的账号、全名、终端机代号与登入时间等等
+-m：列出与后接的账号相同者
+```
+
+#####chfn
+
+> 用户拥有功能
+
+```
+chfn [-foph] [账号名]
+
+-f：后接完成名称
+-o：办公室房间号？
+-p：办公室电话号码？？
+-h：家庭电话号码？？？
+```
+
+#####chsh
+
+> 用户拥有功能
+
+```
+chsh [-ls]
+
+-l：列出目前系统上可用的shell，即/etc/shells的内容
+-s：修改shell
+```
+
+#####id
+
+> 获取用户id
+
+```
+id [username]
+```
+
+#####groupadd
+
+> 新增群组
+
+```
+groupadd [-g gid] [-r] 组名
+
+-g：后接GID
+-r：建立系统群组
+```
+
+######groupmod
+
+> 群组设置
+
+```
+groupmod [-g gid] [-n group_name] 群组名
+
+-g：修改已有的GID
+-n：修改已有的组名
+```
+
+#####groupdel
+
+> 删除群组
+
+```
+groupdel [groupname]
+```
+
+#####gpasswd
+
+> 群组管理员功能
+
+```
+gpasswd groupname
+gpasswd [-A user1,..] [-M user2,..] groupname
+gpasswd [-rR] groupname
+
+无参数：代表给予groupname一个密码
+-A：后接用户名，即群组管理员
+-M：后接用户名，即加入的群组成员
+-r：将groupname的密码移除
+-R：使groupname的密码失效
+
+群组管理员可执行动作：
+gpasswd [-ad] user groupname
+
+-a：将使用者加入群组
+-d：将使用者移除群组
+```
+
+######setfacl
+
+> 设定某个档案/目录的ACL
+
+```
+setfacl [-bkRd] [{-m|-x} acl参数] 目标文件名
+
+-m：设定后续的acl参数给档案使用
+-x：删除后续的acl参数
+-b：移除所有的acl参数
+-k：移除预设的acl参数
+-R：递归
+-d：设定预设acl参数
+```
+
+#####getfacl
+
+> 获取某个档案/目录的ACL
+
+```
+getfacl filename
+
+选项与setfacli相同
+```
+
+######su
+
+> 使用者身份切换
+
+```
+su [-lm] [-c 指令] [username]
+
+-：单纯使用-代表使用login-shell的变量档案读取方式来登入系统
+-l：后接欲切换的使用者账号，也是login-shell的方式
+-m：代表使用目前的环境设定，而不读取新使用者的配置文件
+-c：仅进行一次指令
+```
+
+#####sudo
+
+> 使用者身份切换
+
+```
+sudo [-b] [-u 新使用者账号]
+
+-b：将后续指令放到背景中去执行
+-u：后接欲切换的使用者，默认root
+```
+
+##磁盘与文件系统相关
 
 #####dumpe2fs
 
@@ -962,4 +1984,121 @@ hdparm [-icdmXTt] 装置名称
 -X：设定UtraDMA模式
 -T：测试暂存区的存取性能
 -t：测试硬盘的实际存取性能
+```
+
+#####quotacheck
+
+> 扫描文件系统并建立quota的记录文件
+
+```
+quotacheck [-avugfM] [/mount_point]
+
+-a：扫描所有在/etc/mtab内，含有quota支持的filesystem
+-u：针对用户扫描档案与目录的使用情况，会建立aquota.user
+-g：针对群组扫描档案与目录的使用情况，会建立aquota.group
+-v：显示扫描过程
+-f：强制扫描文件系统，并写入新的quota配置文件中
+-M：强制以读写的方式扫描文件系统
+```
+
+######quotaon
+
+> 启动quota服务
+
+```
+quotaon [-avug]
+quotaon [-vug] [/mount_point]
+
+-u：针对使用者启动quota（aquota.user）
+-g：针对群组启动quota（aquota.group）
+-v：显示启动过程
+-a：根据/etc/mtab内的filesystem设定启动有关的quota
+```
+
+#####quotaoff
+
+> 关闭quota服务
+
+```
+quotaoff [-a]
+quotaoff [-ug] [/mount_point]
+
+-a：关闭全部
+-u：仅针对后接的mount_point关闭user quota
+-g：仅针对后接的mount_point关闭group quota
+```
+
+#####edquota
+
+> 编辑账号/群组的限制与宽限时间
+
+```
+edquota [-u username] [-g groupname]
+edquota -t  //修改宽限时间
+edquota -p 范本账号 -u 新账号
+
+-u：后接账号名称
+-g：后接组名
+-t：后接修改宽限时间
+-p：复制范本
+```
+
+#####quota
+
+> 单一用户的quota报表
+
+```
+quota [-uvs] [username]
+quota [-gvs] [groupname]
+
+-u：后接username
+-g：后接groupname
+-v：显示每个用户在filesystem的quota值
+-s：使用1024位倍数来指定单位
+```
+
+#####repquota
+
+> 针对文件系统的限额做报表
+
+```
+requota -a [-vugs]
+
+-a：直接到/etc/mtab搜寻具有quota标志的filesystem，并报告quota结果
+-v：输出的数据将含有filesystem相关的详细信息
+-u：显示用户的quota限值（默认值）
+-g：显示群组的quota限值
+-s：使用M，G为单位显示结果
+```
+
+#####warnquota
+
+> 对超过限额者发出警告信
+
+#####setquota
+
+> 直接设定quota配额
+
+```
+setquota [-u|-g] 名称 block(soft) block(hard) inode(soft) inode(hard) 文件系统
+```
+
+#####mdadm
+
+> 软件磁盘阵列
+
+```
+mdadm --detail /dev/md0
+mdadm --create --auto=yes /dev/md[0-9] --raid-devices=N --level=[015] --spare-devices=N /dev/sdx /dev/hdx..
+mdadm --manage /dev/md[0-9] [--add 装置] [--remove 装置] [--fail 装置]
+
+--create：建立RAID选项
+--auto=yes：后接建立软件磁盘阵列的装置
+--raid-devices=N：使用多个磁盘作为磁盘阵列装置
+--spare-devices=N：使用多个磁盘作为备用装置
+--level=[015]：设定这组磁盘阵列的等级
+--detail：后接磁盘阵列的详细信息
+--add：将后接装置加入md
+--remove：将后接装置移出md
+--fail：将后接装置设定为fail状态
 ```
