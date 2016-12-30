@@ -48,7 +48,7 @@
   - [ln](#ln)
 
 
-* [程序管理与SELinux相关](#程序管理与SELinux相关)
+- [程序管理与SELinux相关](#程序管理与SELinux相关)
   - [ps](#ps)
   - [top](#top)
   - [pstree](#pstree)
@@ -84,7 +84,7 @@
   - [semanage](#semanage)
 
 
-* [压缩相关](#压缩相关)
+- [压缩相关](#压缩相关)
   - [compress](#compress)
   - [gzip,zcat](#gzip,zcat)
   - [bzip2,bzcat](#bzip2,bzcat)
@@ -95,7 +95,7 @@
   - [cpio](#cpio)
 
 
-* [搜索与字符处理相关](#搜索与字符处理相关)
+- [搜索与字符处理相关](#搜索与字符处理相关)
   - [which](#which)
   - [whereis](#whereis)
   - [locate](#locate)
@@ -122,7 +122,7 @@
   - [管线命令](#管线命令)
 
 
-* [权限与账号管理相关](#权限与账号管理相关)
+- [权限与账号管理相关](#权限与账号管理相关)
   - [umask](#umask)
   - [chattr](#chattr)
   - [lsattr](#lsattr)
@@ -147,7 +147,7 @@
   - [su](#su)
   - [sudo](#sudo)
 
-* [磁盘与文件系统相关](#磁盘与文件系统相关)
+- [磁盘与文件系统相关](#磁盘与文件系统相关)
   - [dumpe2fs](#dumpe2fs)
   - [df](#df)
   - [du](#du)
@@ -168,6 +168,21 @@
   - [warnquota](#warnquota)
   - [setquota](#setquota)
   - [mdadm](#mdadm)
+
+
+- [其他](#其他)
+  - [chkconfig](#chkconfig)
+  - [logrotate](#logrotate)
+  - [make](#make)
+  - [ldconfig](#ldconfig)
+  - [ldd](#ldd)
+  - [md5sum/sha1sum](#md5sum/sha1sum)
+  - [depmod](#depmod)
+  - [lsmod](#lsmod)
+  - [insmod](#insmod)
+  - [rmmod](#rmmod)
+  - [modprobe](#modprobe)
+  - [mkinitrd](#mkinitrd)
 
 
 ---
@@ -2101,4 +2116,152 @@ mdadm --manage /dev/md[0-9] [--add 装置] [--remove 装置] [--fail 装置]
 --add：将后接装置加入md
 --remove：将后接装置移出md
 --fail：将后接装置设定为fail状态
+```
+
+##其他
+
+#####chkconfig
+
+> 管理系统服务默认开机启动与否
+
+```
+chkconfig --list [服务名称]
+chkconfig [--level [0123456]] [服务名称] [on|off]
+chkconfig [--add|--del] [服务名称]
+
+--list：将目前各项服务状态列出来
+--level：设定某个服务在该level下启动或关闭
+--add：增加一个服务各chkconfig管理，该服务必须在/etc/init.d/内
+--del：删除一个交给chkconfig管理的任务
+```
+
+#####logrotate
+
+> 测试
+
+```
+logrotate [-vf] logfile
+
+-v：显示过程
+-f：强制对每个登录档进行rotate
+```
+
+#####make
+
+> 编译源码
+
+```
+make clean
+make
+make install
+```
+
+#####ldconfig
+
+> 动态与静态函式库
+
+```
+ldconfig [-f conf] [-C cache]
+ldconfig [-p]
+
+-f conf：使用指定的conf作为函式库取得路径，而不以/etc/ld.so.cof为默认值
+-C cache：使用cache作为快取暂存的函式库资料，而不以/etc/ld.so.cache为默认值
+-p：列出目前所有的函式库资料
+```
+
+#####ldd
+
+> 程序的动态函式库解析
+
+```
+ldd [-vdr] [filename]
+
+-v：列出所有内容信息
+-d：显示资料有遗失的link点
+-r：显示ELF有关的错误内容
+```
+
+######md5sum/sha1sum
+
+> 检验软件的正确性
+
+```
+md5sum/sha1sum [-bct] filename
+md5sum/sha1sum [--status|--warn] --check filename
+
+-b：使用二进制的读档方式，默认为windows/dos档案形态的读取方式
+-c：检验档案指纹
+-t：以文字形态来读取档案指纹
+```
+
+#####depmod
+
+> 核心模块与相依性
+
+```
+depmod [-Ane]
+
+-A：更新modules.dep
+-n：不写入modules.dep，直接输出到屏幕上
+-e：显示目前已加载的不可执行模块
+```
+
+#####lsmod
+
+> 核心模块的观察
+
+#####modinfo
+
+> 核心模块的观察
+
+```
+modinfo [-adln] [module_name|filename]
+
+-a：仅列出作者名称
+-d：仅列出该modules的说明（description）
+-l：仅列出授权（license）
+-n：仅列出该模块的详细路径
+```
+
+#####insmod
+
+> 核心模块的加载
+
+```
+insmod [/full/path/module_name] [parameters]
+```
+
+#####rmmod
+
+> 核心模块的卸除
+
+```
+rmmod [-fw] module_name
+
+-f：强制删除
+-w：若模块正在使用，则等待该模块使用完毕后再移除
+```
+
+#####modprobe
+
+> 核心模块的查看
+
+```
+modprobe [-lcfr] module_name
+
+-c：列出目前系统所有模块
+-l：列出磨枪再/lib/modules/uname/kernel当中的所有模块完整文件名
+-f：强制加载模块
+-r：移除模块
+```
+
+#####mkinitrd
+
+> 建立新initrd档案
+
+```
+mkinitrd [-v] [--with=模块名称] initrd 文件名 核心版本
+
+-v：显示mkinitrd的运作过程
+initrd档名：要建立的initrd档名
 ```

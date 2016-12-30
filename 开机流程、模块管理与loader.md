@@ -36,7 +36,7 @@
 * runlevel
 
 |等级|意义|
-|--|--|
+|---|---|
 |0|halt（系统直接关机）|
 |1|single user mode（单人模式）|
 |2|Multi-user,without NFS（无NFS服务）|
@@ -96,7 +96,7 @@
   * keyboard & mouse：设定键盘与鼠标形式
   * network：网络相关
   * network-script：主要用在设定网卡
-  
+
 ####run level的切换
 
 init runlevel
@@ -203,28 +203,3 @@ grub-install --recheck /dev/xxx
 ####利用chroot切换到另一个磁盘工作
 
 利用一个Linux系统修复坏的
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

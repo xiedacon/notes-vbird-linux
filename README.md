@@ -30,17 +30,17 @@
 
 - [例行性工作排程（crontab）](https://github.com/xiedacon/notes-vbird-linux/blob/master/例行性工作排程（crontab）.md)
 
-- [系统管理与SELinux初探](https://github.com/xiedacon/notes-vbird-linux/blob/master/系统管理与selinux初探.md)
+- [系统管理与SELinux初探](https://github.com/xiedacon/notes-vbird-linux/blob/master/%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86%E4%B8%8Eselinux%E5%88%9D%E6%8E%A2.md)
 
 - [认识系统服务（daemons）](https://github.com/xiedacon/notes-vbird-linux/blob/master/认识系统服务（daemons）.md)
 
 - [认识与分析登录档](https://github.com/xiedacon/notes-vbird-linux/blob/master/认识与分析登录档.md)
 
-- [开机流程、模块管理与Loader](https://github.com/xiedacon/notes-vbird-linux/blob/master/开机流程、模块管理与Loader.md)
+- [开机流程、模块管理与Loader](https://github.com/xiedacon/notes-vbird-linux/blob/master/%E5%BC%80%E6%9C%BA%E6%B5%81%E7%A8%8B%E3%80%81%E6%A8%A1%E5%9D%97%E7%AE%A1%E7%90%86%E4%B8%8Eloader.md)
 
-- [软件安装：原始码与Tarball](https://github.com/xiedacon/notes-vbird-linux/blob/master/软件安装：原始码与Tarball.md)
+- [软件安装：原始码与Tarball](https://github.com/xiedacon/notes-vbird-linux/blob/master/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%EF%BC%9A%E5%8E%9F%E5%A7%8B%E7%A0%81%E4%B8%8Etarball.md)
 
-- [软件安装：包管理器](https://github.com/xiedacon/notes-vbird-linux/blob/master/软件安装：包管理器.md)
+- [软件安装：包管理器](https://github.com/xiedacon/notes-vbird-linux/blob/master/%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8.md)
 
 - [Linux备份策略](https://github.com/xiedacon/notes-vbird-linux/blob/master/linux备份策略.md)
 
